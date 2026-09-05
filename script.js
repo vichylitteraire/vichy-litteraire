@@ -1,7 +1,10 @@
 if("scrollRestoration" in history)history.scrollRestoration="manual";
 window.addEventListener("load",()=>{if(location.hash)history.replaceState(null,"",location.pathname+location.search);window.scrollTo({top:0,left:0,behavior:"instant"})},{once:true});
 let lang=localStorage.getItem("vl-lang")||"fr",current=null,currentVersion="original";
-const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],texts=Array.isArray(window.VICHY_TEXTS)?[...window.VICHY_TEXTS]:[],cfg=window.VICHY_CONFIG||{},backendLikes={};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],cfg=window.VICHY_CONFIG||{},backendLikes={};
+const monthIndex={janvier:0,january:0,fevrier:1,february:1,mars:2,march:2,avril:3,april:3,mai:4,may:4,juin:5,june:5,juillet:6,july:6,aout:7,august:7,septembre:8,september:8,octobre:9,october:9,novembre:10,november:10,decembre:11,december:11};
+const dateValue=value=>{const text=String(value||"").trim(),iso=Date.parse(text);if(Number.isFinite(iso))return iso;const parts=text.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().match(/(\d{1,2})\s+([a-z]+)\s+(\d{4})/);return parts&&monthIndex[parts[2]]!==undefined?Date.UTC(+parts[3],monthIndex[parts[2]],+parts[1]):0};
+const texts=(Array.isArray(window.VICHY_TEXTS)?[...window.VICHY_TEXTS]:[]).sort((a,b)=>dateValue(b.date)-dateValue(a.date));
 const liked=new Set(JSON.parse(localStorage.getItem("vl-liked")||"[]")),visitorId=localStorage.getItem("vl-visitor")||crypto.randomUUID();
 localStorage.setItem("vl-visitor",visitorId);
 const configured=()=>cfg.supabaseUrl&&!cfg.supabaseUrl.includes("YOUR_PROJECT")&&cfg.supabaseAnonKey&&!cfg.supabaseAnonKey.includes("YOUR_SUPABASE");
@@ -9,7 +12,7 @@ const headers=()=>({apikey:cfg.supabaseAnonKey,Authorization:`Bearer ${cfg.supab
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const original=x=>x.original||x[x.originalLang||"fr"]||x.fr||x.en;
 function excerpt(value){const clean=String(value).replace(/\s+/g," ").trim(),parts=clean.match(/[^.!?…]+[.!?…]+|[^.!?…]+$/g)||[clean];return parts.slice(0,2).join(" ").trim().replace(/[.…]+$/,"")+"…"}
-function count(x){return backendLikes[x.id]??x.likes}
+function count(x){const value=backendLikes[x.id]??x.likes??0;return Number.isFinite(Number(value))?Number(value):0}
 function card(x,i){return `<article class="card" data-id="${esc(x.id)}"><div class="card-top"><time>${esc(x.date)}</time><span class="heart">♡ ${count(x)}</span></div><div class="image"><img src="${esc(x.image||"")}" alt="" onerror="this.hidden=true"><span>IMAGE ${String(i+1).padStart(2,"0")}</span></div><p>«${esc(excerpt(original(x)))}»</p><div class="translation-choice"><button data-version="fr" data-id="${esc(x.id)}">FR · Lire</button><button data-version="en" data-id="${esc(x.id)}">EN · Read</button></div><footer><b>Texte</b> · ${esc(x.author)}<small>${esc(x.place)}</small></footer></article>`}
 function render(){const html=texts.slice(0,6).map(card).join("");$("#lettersGrid").innerHTML=html;$("#archiveGrid").innerHTML=texts.map(card).join("");bindCards();$$("[data-fr]").forEach(el=>el.textContent=el.dataset[lang]);$$("[data-lang]").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang))}
 function bindCards(){$$(".card").forEach(el=>el.onclick=e=>{if(e.target.closest(".translation-choice"))return;openLetter(texts.find(x=>x.id===el.dataset.id),"original")});$$(".translation-choice button").forEach(b=>b.onclick=e=>{e.stopPropagation();openLetter(texts.find(x=>x.id===b.dataset.id),b.dataset.version)})}

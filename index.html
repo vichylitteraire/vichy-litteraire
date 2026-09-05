@@ -6,15 +6,15 @@
   <meta name="description" content="Lettres, notes et souvenirs de Vichy.">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260905-2">
+  <link rel="stylesheet" href="styles.css?v=20260905-3">
 </head>
 <body>
   <header class="topbar">
     <nav>
       <a href="#about" data-fr="À propos" data-en="About">À propos</a>
-      <!-- <a href="#editions" data-fr="Éditions" data-en="Editions">Éditions</a> -->
+      <a href="#editions" data-fr="Éditions" data-en="Editions">Éditions</a>
       <button id="archiveOpen" data-fr="Tous les textes" data-en="All texts">Tous les textes</button>
-      <!-- <a href="#don" data-fr="Don" data-en="Donate">Don</a> -->
+      <a href="#don" data-fr="Don" data-en="Donate">Don</a>
       <button id="submitOpen" data-fr="Envoyer texte" data-en="Submit text">Envoyer texte</button>
       <a href="https://instagram.com/vichylitteraire" target="_blank" rel="noreferrer">Instagram ↗</a>
       <span class="lang"><button data-lang="fr" class="active">FR</button><i>/</i><button data-lang="en">EN</button></span>
@@ -50,6 +50,6 @@
   <div class="overlay" id="archiveModal" hidden><section class="modal archive-modal"><button class="close" data-close>×</button><h2 data-fr="Tous les textes" data-en="All texts">Tous les textes</h2><div class="letters" id="archiveGrid"></div></section></div>
   <div class="overlay" id="submitModal" hidden><section class="modal submit-modal"><button class="close" data-close>×</button><h2 data-fr="Envoyer un texte" data-en="Submit a text">Envoyer un texte</h2><form id="submitForm"><label><span data-fr="Nom ou pseudonyme" data-en="Name or pen name">Nom ou pseudonyme</span><input name="name" required></label><label><span data-fr="Ville" data-en="City">Ville</span><input name="city" required></label><label><span data-fr="Pays" data-en="Country">Pays</span><input name="country" required></label><label><span data-fr="Votre texte" data-en="Your text">Votre texte</span><textarea name="body" rows="10" placeholder="Écrivez ici ou joignez un document ci-dessous"></textarea></label><div class="upload-row single"><label class="upload"><span data-fr="Joindre un document texte" data-en="Attach a text document">Joindre un document texte</span><input type="file" name="document" accept=".txt,.doc,.docx,.pdf"><small>.txt · .doc · .docx · .pdf · 5 MB max</small></label></div><button type="submit" data-fr="Envoyer le texte" data-en="Submit text">Envoyer le texte</button></form><div id="success" hidden data-fr="Merci. Votre lettre a été envoyée à Vichy Littéraire et sera publiée prochainement." data-en="Thank you. Your letter has been sent to Vichy Littéraire and will be published soon.">Merci. Votre lettre a été envoyée à Vichy Littéraire et sera publiée prochainement.</div></section></div>
 
-  <script src="config.js"></script><script src="texts.js"></script><script src="script.js?v=20260905-2"></script>
+  <script src="config.js"></script><script src="texts.js"></script><script src="script.js?v=20260905-3"></script>
 </body>
 </html>
