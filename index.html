@@ -6,7 +6,7 @@
   <meta name="description" content="Lettres, notes et souvenirs de Vichy.">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260905-6">
+  <link rel="stylesheet" href="styles.css?v=20260905-8">
 </head>
 <body>
   <header class="topbar">
@@ -69,13 +69,13 @@
           </div>
         </fieldset>
         <label><span data-fr="Votre texte" data-en="Your text">Votre texte</span><textarea name="body" rows="10" data-placeholder-fr="Écrivez votre texte ici ou joignez un document ci-dessous" data-placeholder-en="Write your text here or attach a document below" placeholder="Écrivez votre texte ici ou joignez un document ci-dessous"></textarea></label>
-        <div class="upload-row single"><label class="upload"><span data-fr="Joindre un document texte" data-en="Attach a text document">Joindre un document texte</span><input type="file" name="document" accept=".txt,.doc,.docx,.pdf"><small>.txt · .doc · .docx · .pdf · 5 MB max</small></label></div>
+        <div class="upload-row single"><label class="upload"><span data-fr="Joindre un document texte" data-en="Attach a text document">Joindre un document texte</span><span class="file-control"><span class="file-button" data-fr="Choisir un fichier" data-en="Choose a file">Choisir un fichier</span><span class="file-name" id="fileName">Aucun fichier sélectionné</span></span><input class="file-input" id="documentInput" type="file" name="document" accept=".txt,.doc,.docx,.pdf"><small>.txt · .doc · .docx · .pdf · 5 MB max</small></label></div>
         <button type="submit" data-fr="Envoyer le texte" data-en="Submit text">Envoyer le texte</button>
       </form>
       <div id="success" hidden data-fr="Merci. Votre lettre a été envoyée à Vichy Littéraire et sera publiée prochainement." data-en="Thank you. Your letter has been sent to Vichy Littéraire and will be published soon.">Merci. Votre lettre a été envoyée à Vichy Littéraire et sera publiée prochainement.</div>
     </section>
   </div>
 
-  <script src="config.js"></script><script src="texts.js?v=20260905-2"></script><script src="script.js?v=20260905-8"></script>
+  <script src="config.js"></script><script src="texts.js?v=20260905-2"></script><script src="script.js?v=20260905-9"></script>
 </body>
 </html>
