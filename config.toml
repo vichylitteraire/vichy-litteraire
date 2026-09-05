@@ -1,0 +1,4 @@
+project_id = "YOUR_PROJECT_REF"
+
+[functions.send-letter]
+verify_jwt = false
