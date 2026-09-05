@@ -6,7 +6,7 @@
   <meta name="description" content="Lettres, notes et souvenirs de Vichy.">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260905-5">
+  <link rel="stylesheet" href="styles.css?v=20260905-6">
 </head>
 <body>
   <header class="topbar">
@@ -48,8 +48,34 @@
 
   <div class="overlay" id="letterModal" hidden><article class="modal letter-full"><button class="close" data-close aria-label="Fermer">×</button><div class="full-image"><img id="fullImage" src="" alt=""><span class="full-image-placeholder">Vichy Littéraire</span><time id="fullDate"></time></div><div class="full-reading"><div class="full-ornament">V · L</div><div id="fullBody"></div><div class="full-signature"><p id="fullAuthor"></p><button id="likeButton" class="like"></button></div></div></article></div>
   <div class="overlay" id="archiveModal" hidden><section class="modal archive-modal"><button class="close" data-close>×</button><h2 data-fr="Tous les textes" data-en="All texts">Tous les textes</h2><div class="letters" id="archiveGrid"></div></section></div>
-  <div class="overlay" id="submitModal" hidden><section class="modal submit-modal"><button class="close" data-close>×</button><h2 data-fr="Envoyer un texte" data-en="Submit a text">Envoyer un texte</h2><p class="language-note" data-fr="Vous pouvez écrire dans la langue de votre choix — nous préparerons les traductions française et anglaise." data-en="You may write in any language — we will prepare French and English translations.">Vous pouvez écrire dans la langue de votre choix — nous préparerons les traductions française et anglaise.</p><form id="submitForm"><label><span data-fr="Nom ou pseudonyme" data-en="Name or pen name">Nom ou pseudonyme</span><input name="name" required></label><label><span data-fr="Ville" data-en="City">Ville</span><input name="city" required></label><label><span data-fr="Pays" data-en="Country">Pays</span><input name="country" required></label><label><span data-fr="Votre texte" data-en="Your text">Votre texte</span><textarea name="body" rows="10" placeholder="Écrivez ici ou joignez un document ci-dessous"></textarea></label><div class="upload-row single"><label class="upload"><span data-fr="Joindre un document texte" data-en="Attach a text document">Joindre un document texte</span><input type="file" name="document" accept=".txt,.doc,.docx,.pdf"><small>.txt · .doc · .docx · .pdf · 5 MB max</small></label></div><button type="submit" data-fr="Envoyer le texte" data-en="Submit text">Envoyer le texte</button></form><div id="success" hidden data-fr="Merci. Votre lettre a été envoyée à Vichy Littéraire et sera publiée prochainement." data-en="Thank you. Your letter has been sent to Vichy Littéraire and will be published soon.">Merci. Votre lettre a été envoyée à Vichy Littéraire et sera publiée prochainement.</div></section></div>
+  <div class="overlay" id="submitModal" hidden>
+    <section class="modal submit-modal">
+      <button class="close" data-close>×</button>
+      <h2 data-fr="Envoyer un texte" data-en="Submit a text">Envoyer un texte</h2>
+      <p class="language-note" data-fr="Vous pouvez écrire dans la langue de votre choix — nous préparerons les traductions française et anglaise." data-en="You may write in any language — we will prepare French and English translations.">Vous pouvez écrire dans la langue de votre choix — nous préparerons les traductions française et anglaise.</p>
+      <form id="submitForm">
+        <label><span data-fr="Nom ou pseudonyme" data-en="Name or pen name">Nom ou pseudonyme</span><input name="name" required></label>
+        <label><span data-fr="D’où venez-vous ? Ville, pays" data-en="Where are you from? City, country">D’où venez-vous ? Ville, pays</span><input name="location" data-placeholder-fr="Vichy, France" data-placeholder-en="London, United Kingdom" placeholder="Vichy, France" required></label>
+        <fieldset class="category-field">
+          <legend data-fr="Quel type de texte souhaitez-vous envoyer ?" data-en="What type of text would you like to submit?">Quel type de texte souhaitez-vous envoyer ?</legend>
+          <small data-fr="Plusieurs choix sont possibles" data-en="You may select several options">Plusieurs choix sont possibles</small>
+          <div class="category-options">
+            <label><input type="checkbox" name="category" value="prose"><span data-fr="Prose" data-en="Prose">Prose</span></label>
+            <label><input type="checkbox" name="category" value="poem"><span data-fr="Poème" data-en="Poem">Poème</span></label>
+            <label><input type="checkbox" name="category" value="letter"><span data-fr="Lettre" data-en="Letter">Lettre</span></label>
+            <label><input type="checkbox" name="category" value="memory"><span data-fr="Souvenir de Vichy" data-en="Memory of Vichy">Souvenir de Vichy</span></label>
+            <label><input type="checkbox" name="category" value="note"><span data-fr="Note" data-en="Note">Note</span></label>
+            <label><input type="checkbox" name="category" value="other"><span data-fr="Autre" data-en="Other">Autre</span></label>
+          </div>
+        </fieldset>
+        <label><span data-fr="Votre texte" data-en="Your text">Votre texte</span><textarea name="body" rows="10" data-placeholder-fr="Écrivez votre texte ici ou joignez un document ci-dessous" data-placeholder-en="Write your text here or attach a document below" placeholder="Écrivez votre texte ici ou joignez un document ci-dessous"></textarea></label>
+        <div class="upload-row single"><label class="upload"><span data-fr="Joindre un document texte" data-en="Attach a text document">Joindre un document texte</span><input type="file" name="document" accept=".txt,.doc,.docx,.pdf"><small>.txt · .doc · .docx · .pdf · 5 MB max</small></label></div>
+        <button type="submit" data-fr="Envoyer le texte" data-en="Submit text">Envoyer le texte</button>
+      </form>
+      <div id="success" hidden data-fr="Merci. Votre lettre a été envoyée à Vichy Littéraire et sera publiée prochainement." data-en="Thank you. Your letter has been sent to Vichy Littéraire and will be published soon.">Merci. Votre lettre a été envoyée à Vichy Littéraire et sera publiée prochainement.</div>
+    </section>
+  </div>
 
-  <script src="config.js"></script><script src="texts.js"></script><script src="script.js?v=20260905-6"></script>
+  <script src="config.js"></script><script src="texts.js?v=20260905-2"></script><script src="script.js?v=20260905-8"></script>
 </body>
 </html>
